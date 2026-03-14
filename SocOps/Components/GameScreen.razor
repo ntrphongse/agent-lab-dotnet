@@ -1,37 +1,76 @@
 @using SocOps.Models
 
-<div class="flex flex-col min-h-full bg-gray-50">
-    <!-- Header -->
-    <header class="flex items-center justify-between p-3 bg-white border-b border-gray-200">
-        <button
-            @onclick="OnReset"
-            class="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100">
-            ← Back
-        </button>
-        <h1 class="font-bold text-gray-900">Soc Ops</h1>
-        <div class="w-16"></div>
+<div class="flex flex-col min-h-full bg-memphis-gradient-2 relative overflow-hidden">
+    <!-- Memphis background decorations -->
+    <div class="absolute top-4 left-4 w-12 h-3 bg-memphis-pink border-2 border-memphis-black transform -rotate-12"></div>
+    <div class="absolute top-6 right-6 w-8 h-8 bg-memphis-green rounded-full border-2 border-memphis-black animate-memphis-pulse"></div>
+    <div class="absolute bottom-16 left-8 w-6 h-16 bg-memphis-blue border-2 border-memphis-black transform rotate-12"></div>
+    <div class="absolute bottom-8 right-12 w-10 h-10 bg-memphis-yellow border-2 border-memphis-black transform rotate-45"></div>
+
+    <!-- Memphis Header -->
+    <header class="relative bg-memphis-white border-b-4 border-memphis-black p-4 shadow-memphis-sm">
+        <!-- Zigzag decoration -->
+        <div class="absolute top-0 left-0 w-full h-2" style="background: repeating-linear-gradient(90deg, var(--memphis-hot-pink) 0px, var(--memphis-hot-pink) 12px, var(--memphis-electric-blue) 12px, var(--memphis-electric-blue) 24px);"></div>
+        
+        <div class="flex items-center justify-between relative z-10">
+            <button
+                @onclick="OnReset"
+                class="btn-memphis-secondary font-black text-xs px-4 py-2 uppercase tracking-wide hover-memphis">
+                ← BACK
+            </button>
+            <h1 class="font-memphis font-black text-memphis-black text-xl uppercase tracking-wider">SOC OPS</h1>
+            <div class="w-16"></div>
+        </div>
+        
+        <!-- Decorative corner elements -->
+        <div class="absolute -bottom-2 -right-2 w-4 h-4 bg-memphis-coral border-2 border-memphis-black transform rotate-45"></div>
+        <div class="absolute -bottom-1 -left-1 w-3 h-3 bg-memphis-cyan rounded-full border border-memphis-black"></div>
     </header>
 
-    <!-- Instructions -->
-    <p class="text-center text-gray-500 text-sm py-2 px-4">
-        Tap a square when you find someone who matches it.
-    </p>
+    <!-- Memphis Instructions -->
+    <div class="bg-memphis-black text-memphis-white py-3 px-4 relative">
+        <p class="text-center font-body font-bold text-sm uppercase tracking-wide">
+            🎯 Tap squares when you find matches! 🎯
+        </p>
+        <div class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-memphis-black"></div>
+    </div>
 
-    <!-- Bingo indicator -->
+    <!-- Memphis Bingo Indicator -->
     @if (HasBingo)
     {
-        <div class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
-            🎉 BINGO! You got a line!
+        <div class="bg-memphis-gradient-electric text-memphis-white text-center py-4 font-black text-lg uppercase tracking-wider animate-memphis-pulse relative">
+            <div class="absolute -top-2 -left-2 w-6 h-6 bg-memphis-yellow border-2 border-memphis-black transform rotate-45 animate-memphis-pulse"></div>
+            <div class="absolute -top-2 -right-2 w-6 h-6 bg-memphis-coral rounded-full border-2 border-memphis-black animate-memphis-pulse"></div>
+            🚀 BINGO! MEMPHIS MASTER! 🚀
         </div>
     }
 
-    <!-- Board -->
-    <div class="flex-1 flex items-center justify-center p-3">
-        <BingoBoard
-            Board="@Board"
-            WinningSquareIds="@WinningSquareIds"
-            OnSquareClick="@OnSquareClick" />
+    <!-- Board Container with Memphis Frame -->
+    <div class="flex-1 flex items-center justify-center p-6 relative">
+        <!-- Memphis frame decorations -->
+        <div class="absolute inset-4">
+            <!-- Corner decorations -->
+            <div class="absolute -top-4 -left-4 w-8 h-8 bg-memphis-pink border-3 border-memphis-black transform rotate-45"></div>
+            <div class="absolute -top-4 -right-4 w-6 h-6 bg-memphis-green rounded-full border-2 border-memphis-black"></div>
+            <div class="absolute -bottom-4 -left-4 w-12 h-3 bg-memphis-blue border-2 border-memphis-black transform -rotate-12"></div>
+            <div class="absolute -bottom-4 -right-4 w-8 h-8 bg-memphis-yellow border-3 border-memphis-black"></div>
+            
+            <!-- Side decorations -->
+            <div class="absolute top-1/4 -left-3 w-6 h-6 bg-memphis-coral border-2 border-memphis-black rounded-full animate-memphis-pulse"></div>
+            <div class="absolute top-3/4 -right-3 w-4 h-12 bg-memphis-cyan border-2 border-memphis-black transform rotate-12"></div>
+        </div>
+        
+        <!-- The actual bingo board -->
+        <div class="relative z-10">
+            <BingoBoard
+                Board="@Board"
+                WinningSquareIds="@WinningSquareIds"
+                OnSquareClick="@OnSquareClick" />
+        </div>
     </div>
+    
+    <!-- Memphis bottom decoration -->
+    <div class="h-3 bg-memphis-gradient-3"></div>
 </div>
 
 @code {

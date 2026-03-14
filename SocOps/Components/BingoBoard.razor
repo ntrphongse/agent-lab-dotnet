@@ -1,13 +1,25 @@
 @using SocOps.Models
 
-<div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square">
-    @foreach (var square in Board)
-    {
-        <BingoSquare
-            Square="@square"
-            IsWinning="@WinningSquareIds.Contains(square.Id)"
-            OnClick="@(() => OnSquareClick.InvokeAsync(square.Id))" />
-    }
+<div class="memphis-board-container relative">
+    <!-- Memphis geometric decorations -->
+    <div class="absolute -top-4 -left-4 w-8 h-8 bg-memphis-yellow border-2 border-memphis-black transform rotate-45"></div>
+    <div class="absolute -top-2 -right-2 w-6 h-6 bg-memphis-coral rounded-full border-2 border-memphis-black"></div>
+    <div class="absolute -bottom-3 -left-2 w-12 h-3 bg-memphis-green border-2 border-memphis-black transform -rotate-12"></div>
+    <div class="absolute -bottom-4 -right-4 w-6 h-6 bg-memphis-pink border-2 border-memphis-black"></div>
+    
+    <!-- Main board grid -->
+    <div class="grid grid-cols-5 gap-3 w-full max-w-md mx-auto aspect-square p-4 bg-memphis-white border-4 border-memphis-black shadow-memphis relative z-10">
+        @foreach (var square in Board)
+        {
+            <BingoSquare
+                Square="@square"
+                IsWinning="@WinningSquareIds.Contains(square.Id)"
+                OnClick="@(() => OnSquareClick.InvokeAsync(square.Id))" />
+        }
+    </div>
+    
+    <!-- Memphis zigzag pattern -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-memphis-pink opacity-60" style="background: repeating-linear-gradient(90deg, var(--memphis-hot-pink) 0px, var(--memphis-hot-pink) 8px, var(--memphis-bright-yellow) 8px, var(--memphis-bright-yellow) 16px);"></div>
 </div>
 
 @code {
